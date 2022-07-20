@@ -3,111 +3,238 @@
 
   <div>
     <img
-      [src]="image?.imagePath"
+      [src]="this.image?.imagePath"
       width="70%"
       class="img-fluid mx-auto my-4 d-block"
     />
   </div>
 
   <div class="my-4">
-    <div class="container">
+    <div class="container my-2">
       <div class="display-6">
-        <span class="fw-bold">Title: </span>{{ image?.galleryTitle }}
+        <span class="fw-bold"
+          >{{ "gallery.gallery_overlay_category" | translate }}: </span
+        >{{ this.image?.galleryCategory }}
       </div>
-      <div class="input-group" *ngIf="isEditMode">
-        <div class="input-group-prepend">
-          <span class="input-group-text fw-bold">Title: </span>
+      <div class="display-6" *ngIf="status == 'submit'">
+        <span class="fw-bold"
+          >{{ "gallery.gallery_overlay_category_other" | translate }}: </span
+        >{{ this.otherImage?.galleryCategory }}
+      </div>
+      <div *ngIf="isEditMode">
+        <div class="input-group my-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text fw-bold"
+              >{{ "gallery.gallery_overlay_category" | translate }}:
+            </span>
+          </div>
+          <input
+            [(ngModel)]="category"
+            type="text"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="category_edit_input"
+          />
         </div>
-        <input
-          [(ngModel)]="title"
-          type="text"
-          class="form-control"
-          aria-label="Small"
-          aria-describedby="title_edit_input"
-        />
+        <div class="input-group my-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text fw-bold"
+              >{{ "gallery.gallery_overlay_category_other" | translate }}:
+            </span>
+          </div>
+          <input
+            [(ngModel)]="otherCategory"
+            type="text"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="category_edit_input_other"
+          />
+        </div>
       </div>
     </div>
 
-    <div class="container">
+    <!-- Current language title -->
+    <div class="container my-2">
       <div class="display-6">
-        <span class="fw-bold">Detail: </span>{{ image?.galleryDetail }}
+        <span class="fw-bold"
+          >{{ "gallery.gallery_overlay_title" | translate }}: </span
+        >{{ this.image?.galleryTitle }}
       </div>
-      <div class="input-group" *ngIf="isEditMode">
-        <div class="input-group-prepend">
-          <span class="input-group-text fw-bold">Detail: </span>
+      <div class="display-6" *ngIf="status == 'submit'">
+        <span class="fw-bold"
+          >{{ "gallery.gallery_overlay_title_other" | translate }}: </span
+        >{{ this.otherImage?.galleryTitle }}
+      </div>
+      <div *ngIf="isEditMode">
+        <div class="input-group my-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text fw-bold"
+              >{{ "gallery.gallery_overlay_title" | translate }}:
+            </span>
+          </div>
+          <input
+            [(ngModel)]="title"
+            type="text"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="title_edit_input"
+          />
         </div>
-        <input
-          [(ngModel)]="detail"
-          type="text"
-          class="form-control"
-          aria-label="Small"
-          aria-describedby="detail_edit_input"
-        />
+        <div class="input-group my-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text fw-bold"
+              >{{ "gallery.gallery_overlay_title_other" | translate }}:
+            </span>
+          </div>
+          <input
+            [(ngModel)]="otherTitle"
+            type="text"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="title_edit_input_other"
+          />
+        </div>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container my-2">
       <div class="display-6">
-        <span class="fw-bold">Source: </span>{{ image?.gallerySource }}
+        <span class="fw-bold"
+          >{{ "gallery.gallery_overlay_detail" | translate }}: </span
+        >{{ this.image?.galleryDetail }}
       </div>
-      <div class="input-group" *ngIf="isEditMode">
-        <div class="input-group-prepend">
-          <span class="input-group-text fw-bold">Source: </span>
+      <div class="display-6" *ngIf="status == 'submit'">
+        <span class="fw-bold"
+          >{{ "gallery.gallery_overlay_detail_other" | translate }}: </span
+        >{{ this.otherImage?.galleryDetail }}
+      </div>
+      <div *ngIf="isEditMode">
+        <div class="input-group my-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text fw-bold"
+              >{{ "gallery.gallery_overlay_detail" | translate }}:
+            </span>
+          </div>
+          <input
+            [(ngModel)]="detail"
+            type="text"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="detail_edit_input"
+          />
         </div>
-        <input
-          [(ngModel)]="source"
-          type="text"
-          class="form-control"
-          aria-label="Small"
-          aria-describedby="source_edit_input"
-        />
+        <div class="input-group my-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text fw-bold"
+              >{{ "gallery.gallery_overlay_detail_other" | translate }}:
+            </span>
+          </div>
+          <input
+            [(ngModel)]="otherDetail"
+            type="text"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="detail_edit_input_other"
+          />
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="container w-75 text-center">
-    <div *ngIf="status == 'submit'" class="display-6 text-danger">
-      Are you sure you want to update this record?
+    <div class="container my-2">
+      <div class="display-6">
+        <span class="fw-bold"
+          >{{ "gallery.gallery_overlay_source" | translate }}: </span
+        >{{ this.image?.gallerySource }}
+      </div>
+      <div class="display-6" *ngIf="status == 'submit'">
+        <span class="fw-bold"
+          >{{ "gallery.gallery_overlay_source_other" | translate }}: </span
+        >{{ this.otherImage?.gallerySource }}
+      </div>
+      <div *ngIf="isEditMode">
+        <div class="input-group my-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text fw-bold"
+              >{{ "gallery.gallery_overlay_source" | translate }}:
+            </span>
+          </div>
+          <input
+            [(ngModel)]="source"
+            type="text"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="source_edit_input"
+          />
+        </div>
+        <div class="input-group my-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text fw-bold"
+              >{{ "gallery.gallery_overlay_source_other" | translate }}:
+            </span>
+          </div>
+          <input
+            [(ngModel)]="otherSource"
+            type="text"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="source_edit_input_other"
+          />
+        </div>
+      </div>
     </div>
-    <div *ngIf="status == 'remove'" class="display-6 text-danger">
-      <div>Are you sure you want to delete this record?</div>
-      <div class="h4 font-italic">(This action can not be undone)</div>
-    </div>
-  </div>
 
-  <div class="container text-center my-4" *ngIf="isAdmin">
-    <div *ngIf="status == 'initial'">
-      <button
-        class="btn btn-warning mx-2"
-        (click)="onEdit()"
-        *ngIf="!isEditMode"
-      >
-        Edit
-      </button>
-      <button
-        class="btn btn-success mx-2"
-        (click)="onSubmit()"
-        *ngIf="isEditMode"
-      >
-        Submit
-      </button>
-      <button
-        class="btn btn-danger mx-2"
-        (click)="onRemove()"
-        *ngIf="!isEditMode"
-      >
-        Remove
-      </button>
+    <div class="container w-75 text-center">
+      <div *ngIf="status == 'submit'" class="display-6 text-danger">
+        Are you sure you want to update this record?
+      </div>
+      <div *ngIf="status == 'remove'" class="display-6 text-danger">
+        <div>Are you sure you want to delete this record?</div>
+        <div class="h4 font-italic">(This action can not be undone)</div>
+      </div>
     </div>
 
-    <div *ngIf="status == 'submit'">
-      <button class="btn btn-success mx-2" (click)="onUpdate()">Update</button>
-      <button class="btn btn-danger mx-2" (click)="onCancel()">Cancel</button>
-    </div>
+    <div class="container text-center my-4" *ngIf="isAdmin">
+      <div *ngIf="status == 'initial'">
+        <button
+          class="btn btn-warning mx-2"
+          (click)="onEdit()"
+          *ngIf="!this.isEditMode"
+        >
+          {{ "share.edit_button" | translate }}
+        </button>
+        <button
+          class="btn btn-success mx-2"
+          (click)="onSubmit()"
+          *ngIf="this.isEditMode"
+        >
+          {{ "share.submit_button" | translate }}
+        </button>
+        <button
+          class="btn btn-danger mx-2"
+          (click)="onRemove()"
+          *ngIf="!this.isEditMode"
+        >
+          {{ "share.remove_button" | translate }}
+        </button>
+      </div>
 
-    <div *ngIf="status == 'remove'">
-      <button class="btn btn-success mx-2" (click)="onDelete()">Delete</button>
-      <button class="btn btn-danger mx-2" (click)="onCancel()">Cancel</button>
+      <div *ngIf="status == 'submit'">
+        <button class="btn btn-success mx-2" (click)="onUpdate()">
+          {{ "share.update_button" | translate }}
+        </button>
+        <button class="btn btn-danger mx-2" (click)="onCancel()">
+          {{ "share.cancel_button" | translate }}
+        </button>
+      </div>
+
+      <div *ngIf="status == 'remove'">
+        <button class="btn btn-success mx-2" (click)="onDelete()">
+          {{ "share.delete_button" | translate }}
+        </button>
+        <button class="btn btn-danger mx-2" (click)="onCancel()">
+          {{ "share.cancel_button" | translate }}
+        </button>
+      </div>
     </div>
   </div>
 </div>

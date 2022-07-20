@@ -185,7 +185,7 @@ export class ApprovalComponent implements OnInit, OnDestroy {
       this.selectedContribution.state === 'removed'
     ) {
       // update the current timestamp
-      this.selectedContribution.lastUpdatedAt = new Date();
+      this.selectedContribution.rightist!.lastUpdatedAt = new Date();
 
       if (this.selectedContribution.rightist) {
         let contributorId =

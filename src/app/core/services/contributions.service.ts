@@ -40,7 +40,7 @@ export class ContributionsService {
   }
 
   editUserContributions(contributionId: string, obj: ContributionSchema) {
-    obj.lastUpdatedAt = new Date();
+    obj.rightist!.lastUpdatedAt = new Date();
     return this.callAPI().update({ [contributionId]: obj });
   }
 

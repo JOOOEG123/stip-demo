@@ -8,7 +8,6 @@
     "about_page": "About",
     "about_movement": "About the movement",
     "projects_overview": "Projects overview",
-    "meet_the_team": "Meet the team",
     "resources_page": "Other Resources",
     "research_page": "Research",
     "broswer_page": " Browse Archives",
@@ -99,13 +98,29 @@
     "gallery_top_cat_three_button": "Camps",
     "gallery_top_cat_four_button": "People",
     "gallery_top_cat_five_button": "Albums",
-    "gallery_image_button": "Learn More"
-  },
+    "gallery_image_button": "Learn More",
+    "gallery_overlay_category": "Category",
+    "gallery_overlay_category_other": "Chinese Category",
+    "gallery_overlay_title": "Title",
+    "gallery_overlay_title_other": "Chinese Title",
+    "gallery_overlay_detail": "Detail",
+    "gallery_overlay_detail_other": "Chinese Detail",
+    "gallery_overlay_source": "Source",
+    "gallery_overlay_source_other": "Chinese Source"
+  }, 
   "repository": {
-    "gallery_top_title": "Archive Repositories",
-    "gallery_top_cat_one_button": "Forward",
-    "gallery_top_cat_two_button": "Publication Notes",
-    "gallery_top_cat_three_button": "Appendix",
-    "gallery_top_cat_four_button": "Preface"
+    "repository_top_title": "Archive Repositories",
+    "repository_top_cat_one_button": "Forward",
+    "repository_top_cat_two_button": "Publication Notes",
+    "repository_top_cat_three_button": "Appendix",
+    "repository_top_cat_four_button": "Preface"
+  },
+  "share": {
+    "submit_button": "Submit",
+    "update_button": "Update",
+    "cancel_button": "Cancel",
+    "remove_button": "Remove",
+    "delete_button": "Delete",
+    "edit_button": "Edit"
   }
 }

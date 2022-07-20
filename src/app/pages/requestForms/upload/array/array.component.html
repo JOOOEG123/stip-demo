@@ -1,0 +1,135 @@
+<div class="form-group" *ngIf="type == 'event'">
+  <h4>Event year and event content</h4>
+  <section
+    class="my-4"
+    *ngFor="let event of controls; let i = index; last as last; first as first"
+  >
+    <!-- input fields inside the *ngFor, allows user to add/remove input boxes -->
+    <div [formGroup]="event" class="border p-2 shadow my-4 rounded">
+      <label [for]="'event_year' + i">Year of event</label>
+      <input
+        [bsConfig]="{
+          startView: 'year',
+          minMode: 'year',
+          dateInputFormat: 'YYYY'
+        }"
+        bsDatepicker
+        class="form-control"
+        placeholder="Year"
+        [id]="'event_year' + i"
+        formControlName="startYear"
+        [(ngModel)]="eventYear"
+      />
+      <label [for]="'event_content' + i">Event content/Description</label>
+      <textarea
+        class="form-control"
+        [id]="'event_content' + i"
+        rows="5"
+        placeholder="Add event details here..."
+        formControlName="event"
+        [(ngModel)]="eventContent"
+      ></textarea>
+    </div>
+
+    <!-- Remove button -->
+    <button
+      type="button"
+      tooltip="Remove this event"
+      placement="auto"
+      *ngIf="!first || !last"
+      class="btn btn-lg btn-outline-danger rounded-pill bg-white text-danger"
+      (click)="remove(i)"
+    >
+      Remove
+      <img src="assets/upload/icons-remove.png" class="mx-2" width="30" />
+    </button>
+    <button
+      *ngIf="last"
+      type="button"
+      (click)="add()"
+      tooltip="Add another event"
+      placement="auto"
+      class="btn btn-lg btn-outline-dark rounded-pill bg-white text-dark mx-3"
+    >
+      Add Event
+      <img src="assets/upload/icons-plus.svg" class="mx-2" width="30" />
+    </button>
+  </section>
+</div>
+
+<div class="form-group" *ngIf="type == 'memoir'">
+  <h4>Add Memoir, book, or other information</h4>
+  <!-- allows uses to add/remove input boxes -->
+  <section
+    class="my-4"
+    *ngFor="
+      let memoir of controls;
+      let i = index;
+      last as last;
+      first as first
+    "
+  >
+    <div [formGroup]="memoir" class="border p-2 shadow my-4 rounded">
+      <!-- memoir title -->
+      <label [for]="'memoir_title' + i">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Add title here..."
+        [id]="'memoir_title' + i"
+        formControlName="memoirTitle"
+        [(ngModel)]="memoirTitle"
+      />
+      <br />
+      <!-- memoir author -->
+      <label [for]="'memoir_author' + i">Author</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Add author here.."
+        [id]="'memoir_author' + i"
+        aria-describedby="basic-addon1"
+        formControlName="memoirAuthor"
+        [(ngModel)]="memoirAuthor"
+      />
+      <br />
+      <!-- memoir content -->
+      <label [for]="'memoir_content' + i">Content/Discription</label>
+      <textarea
+        type="text"
+        class="form-control"
+        [id]="'memoir_content' + i"
+        placeholder="Add memoir here..."
+        rows="5"
+        formControlName="memoirContent"
+        [(ngModel)]="memoirContent"
+        (ngModelChange)="onContentChange($event)"
+      ></textarea>
+    </div>
+
+    <br />
+    <!-- removes memoir -->
+    <button
+      type="button"
+      tooltip="Remove this Memoir"
+      placement="auto"
+      *ngIf="!first || !last"
+      class="btn btn-lg btn-outline-danger rounded-pill bg-white text-danger"
+      (click)="remove(i)"
+    >
+      Remove
+      <img src="assets/upload/icons-remove.png" class="mx-2" width="30" />
+    </button>
+    <button
+      *ngIf="last"
+      type="button"
+      (click)="add()"
+      tooltip="Add another Memoir"
+      placement="auto"
+      class="btn btn-lg btn-outline-dark rounded-pill bg-white text-dark mx-3"
+    >
+      Add Memoir
+      <img src="assets/upload/icons-plus.svg" class="mx-2" width="30" />
+    </button>
+  </section>
+</div>

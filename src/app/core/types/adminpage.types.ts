@@ -64,11 +64,13 @@ type Ethnicity =
   | 'Tatar'
   | 'Bai';
 
-export type Status = 'Dead' | 'Alive' | 'Unknown';
+export type Status = 'Deceased' | 'Alive' | 'Unknown';
 
 export type State = 'void' | 'removed';
 
-export type Publish = 'original' | 'new' | 'approved' | 'rejected';
+export type Publish = 'new' | 'approved' | 'rejected'
+
+export type Source = 'original' | 'contributed'
 
 interface Event {
   eventId: string;
@@ -85,24 +87,28 @@ interface Memoir {
 }
 
 export interface RightistSchema {
-  rightistId: string;
-  imagePath: string[];
+  rightistId: string,
+  imageId: string[],
   initial: string;
   firstName: string;
   lastName: string;
+  fullName: string;
   gender: Gender;
   birthYear: number;
   deathYear: number;
   rightistYear: number;
-  status: Status;
-  ethnicity: Ethnicity;
-  job: string;
-  detailJob: string;
-  workplace: string;
-  events: Event[];
-  memoirs: Memoir[];
-  reference: string;
-  description: string;
+  status: Status,
+  ethnicity: Ethnicity,
+  job: string,
+  detailJob: string,
+  workplace: string,
+  workplaceCombined: string,
+  events: Event[],
+  memoirs: Memoir[],
+  reference: string,
+  description: string,
+  lastUpdatedAt: Date,
+  source: Source
 }
 
 export interface Rightist extends RightistSchema {}
@@ -119,7 +125,6 @@ export interface ContributionSchema {
   publish: Publish;
   contributedAt: Date; // set from the service when creating a new contribution
   approvedAt: Date; // set from the service when approving a contribution
-  lastUpdatedAt: Date; // set from the service when updating a contribution
   notificationMessage?: string; // set from the service when approving a contribution
 }
 

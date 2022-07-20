@@ -156,6 +156,10 @@ export class UploadComponent implements OnInit, OnDestroy {
     this.sub.forEach((sub) => sub.unsubscribe());
   }
 
+  onFormChange(event: Event) {
+    console.log(event)
+  }
+
   ngOnInit(): void {
     if (this.page === 'contribution') {
       if (this.contribution) {
@@ -233,14 +237,14 @@ export class UploadComponent implements OnInit, OnDestroy {
         contributedAt: new Date(),
         rightistId: rightistId,
         approvedAt: new Date(),
-        lastUpdatedAt: new Date(),
         publish: 'new',
         rightist: {
           rightistId: rightistId,
-          imagePath: [this.url],
+          imageId: [this.url],
           initial: name.trim().charAt(0).toUpperCase(),
-          firstName: name,
+          firstName: '',
           lastName: '',
+          fullName: name,
           gender: gender || '',
           birthYear: birthYear,
           deathYear: 0,
@@ -250,10 +254,13 @@ export class UploadComponent implements OnInit, OnDestroy {
           job: occupation,
           detailJob: '',
           workplace: '',
+          workplaceCombined: '',
           events: this.eventArray.value,
           memoirs: this.memoirArray.value,
           reference: '',
           description: content,
+          lastUpdatedAt: new Date(),
+          source: 'contributed'
         },
       })
       .then(() => {

@@ -52,6 +52,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   modalRef?: BsModalRef;
   selectedImage?: Image;
+  otherImage?: Image;
 
   status: string = 'initial';
 
@@ -133,6 +134,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.categoryImages = result;
       this.searchGallery();
+      // this.display = this.searchImages.slice(0, this.itemsPerPage)
     }, 100);
   }
 
@@ -166,6 +168,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.status = data.status;
       this.selectedImage = data.image;
+      this.otherImage = data.otherImage;
       this.modalService.show(template, {
         class: 'modal-xl',
         backdrop: 'static',
@@ -187,11 +190,22 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   onUpdate(data: any) {
     let image: Image = data.image;
+    let otherImage: Image = data.otherImage;
     if (this.selectedImage) {
       if (data.status == 'update') {
         this.modalService.hide();
         let { opacity, imagePath, ...result } = image;
+        console.log(result);
         this.imagesAPI.updateImage(result);
+      }
+    }
+
+    if (this.otherImage) {
+      if (data.status == 'update') {
+        this.modalService.hide();
+        let { opacity, imagePath, ...result } = otherImage;
+        console.log(result);
+        // this.imagesAPI.updateImage(result)
       }
     }
     this.currentPage = 1;
@@ -203,6 +217,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
       this.modalService.hide();
       this.imagesAPI.deleteImage(image.imageId);
       this.storageAPI.removeGalleryImage(image.imageId);
+      console.log(image);
     }
     this.currentPage = 1;
   }
@@ -234,6 +249,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
         }
       }
       this.searchImages = result;
+      console.log(this.searchImages);
     } else {
       this.searchImages = this.categoryImages;
     }
@@ -247,4 +263,37 @@ export class GalleryComponent implements OnInit, OnDestroy {
       this.masonry?.layout();
     }, 200);
   }
+
+  // populateData() {
+  // for (let i = 1; i <= 11; i++) {
+  //   fetch(`http://localhost:4200/assets/gallery/historical_${i}.jpg`)
+  //   .then(async response => {
+  //     const contentType = response.headers.get('content-type')
+  //     const blob = await response.blob()
+  //     const file = new File([blob], UUID(), { type: contentType! })
+
+  //     const uid = UUID()
+
+  //     let image : ImageSchema = {
+  //       imageId: uid,
+  //       rightistId: '',
+  //       isGallery: true,
+  //       galleryCategory: '',
+  //       galleryTitle: 'Title',
+  //       galleryDetail: 'Detail',
+  //       gallerySource: 'Source'
+  //     }
+
+  //     if (i % 2 == 0) {
+  //       image.galleryCategory = 'Camps'
+  //     }
+  //     else {
+  //       image.galleryCategory = 'People'
+  //     }
+
+  //     this.imagesAPI.addImage(image)
+  //     this.storageAPI.uploadGalleryImage(uid, file)
+  //   })
+  // }
+  // }
 }

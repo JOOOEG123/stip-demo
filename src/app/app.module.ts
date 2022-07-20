@@ -54,6 +54,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { RequestModifyComponent } from './pages/requestForms/upload/request-modify/request-modify.component';
 import { UploadImageComponent } from './pages/requestForms/upload/upload-image/upload-image.component';
+import { FormComponent } from './pages/requestForms/upload/form/form.component';
+import { ArrayComponent } from './pages/requestForms/upload/array/array.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -73,6 +75,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ContributionComponent,
     RequestModifyComponent,
     UploadImageComponent,
+    FormComponent,
+    ArrayComponent
   ],
   imports: [
     AngularFireAuthModule,

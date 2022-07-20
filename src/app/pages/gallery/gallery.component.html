@@ -112,6 +112,7 @@
   <app-overlay
     [status]="status"
     [image]="this.selectedImage"
+    [otherImage]="this.otherImage"
     (close)="onClose($event)"
     (submit)="onSubmit($event, galleryModal)"
     (remove)="onRemove($event, galleryModal)"
