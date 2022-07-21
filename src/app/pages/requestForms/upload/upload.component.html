@@ -36,81 +36,26 @@
       <!-- event detail and date -->
       <div class="row">
         <div class="col">
-          <app-array [array]="eventArray" title="Event" type="event"></app-array>
+          <app-array
+            [array]="eventArray"
+            title="Event"
+            type="event"
+            (change)="onChangeArray($event)"
+          ></app-array>
         </div>
       </div>
       <!-- memoir section -->
       <br />
-      <h4>Add Memoir, book, or other information</h4>
-      <!-- allows uses to add/remove input boxes -->
-      <section
-        class="my-4"
-        *ngFor="
-          let memoir of memoirControls;
-          let i = index;
-          last as last;
-          first as first
-        "
-      >
-        <div [formGroup]="memoir" class="border p-2 shadow my-4 rounded">
-          <!-- memoir title -->
-          <label [for]="'memoir_title' + i">Title</label>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Add title here..."
-            [id]="'memoir_title' + i"
-            formControlName="memoirTitle"
-          />
-          <br />
-          <!-- memoir author -->
-          <label [for]="'memoir_author' + i">Author</label>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Add author here.."
-            [id]="'memoir_author' + i"
-            aria-describedby="basic-addon1"
-            formControlName="memoirAuthor"
-          />
-          <br />
-          <!-- memoir content -->
-          <label [for]="'memoir_content' + i">Content/Discription</label>
-          <textarea
-            type="text"
-            class="form-control"
-            [id]="'memoir_content' + i"
-            placeholder="Add memoir here..."
-            rows="5"
-            formControlName="memoirContent"
-          ></textarea>
+      <div class="row">
+        <div class="col">
+          <app-array
+            [array]="memoirArray"
+            title="Memoir"
+            type="memoir"
+            (change)="onChangeArray($event)"
+          ></app-array>
         </div>
-
-        <br />
-        <!-- removes memoir -->
-        <button
-          type="button"
-          tooltip="Remove this Memoir"
-          placement="auto"
-          *ngIf="!first || !last"
-          class="btn btn-lg btn-outline-danger rounded-pill bg-white text-danger"
-          (click)="removeMemoir(i)"
-        >
-          Remove
-          <img src="assets/upload/icons-remove.png" class="mx-2" width="30" />
-        </button>
-        <button
-          *ngIf="last"
-          type="button"
-          (click)="addMemoir()"
-          tooltip="Add another Memoir"
-          placement="auto"
-          class="btn btn-lg btn-outline-dark rounded-pill bg-white text-dark mx-3"
-        >
-          Add Memoir
-          <img src="assets/upload/icons-plus.svg" class="mx-2" width="30" />
-        </button>
-      </section>
+      </div>
     </div>
   </div>
   <br /><br />

@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -202,8 +203,21 @@ export class UploadComponent implements OnInit, OnDestroy {
       this.form2.patchValue({
         content: rightist.description,
       });
-      this.eventArray.patchValue(rightist.events);
-      this.memoirArray.patchValue(rightist.memoirs);
+      for (const [index, event] of rightist.events.entries()) {
+        this.eventArray.at(index).patchValue({
+          startYear: event.startYear,
+          endYear: event.endYear,
+          event: event.event
+        })
+      }
+
+      for (const [index, memoir] of rightist.memoirs.entries()) {
+        this.memoirArray.at(index).patchValue({
+          memoirTitle: memoir.memoirTitle,
+          memoirAuthor: memoir.memoirAuthor,
+          memoirContent: memoir.memoirContent
+        })
+      }
     }
   }
 
@@ -215,6 +229,19 @@ export class UploadComponent implements OnInit, OnDestroy {
         this.url = event.target.result;
       };
     }
+  }
+
+  onChangeArray(data: any) {
+    if (data.type === 'event') {
+      this.eventArray = data.array
+    }
+
+    if (data.type === 'memoir') {
+      this.memoirArray = data.array
+    }
+
+    console.log(this.eventArray)
+    console.log(this.memoirArray)
   }
 
   onSubmit() {

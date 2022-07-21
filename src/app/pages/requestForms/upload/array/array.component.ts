@@ -49,7 +49,7 @@ export class ArrayComponent implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit(): void {
-
+    console.log(this.array)
     if (this.array.length == 0) {
       if (this.type == 'event') {
         this.array.push(this.newEvent());
@@ -97,7 +97,6 @@ export class ArrayComponent implements OnInit, OnDestroy {
   }
 
   add() {
-    console.log(this.array);
     if (this.type == 'event') {
       this.array.push(this.newEvent());
     }

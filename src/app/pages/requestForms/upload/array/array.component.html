@@ -18,7 +18,6 @@
         placeholder="Year"
         [id]="'event_year' + i"
         formControlName="startYear"
-        [(ngModel)]="eventYear"
       />
       <label [for]="'event_content' + i">Event content/Description</label>
       <textarea
@@ -27,7 +26,6 @@
         rows="5"
         placeholder="Add event details here..."
         formControlName="event"
-        [(ngModel)]="eventContent"
       ></textarea>
     </div>
 
@@ -78,7 +76,6 @@
         placeholder="Add title here..."
         [id]="'memoir_title' + i"
         formControlName="memoirTitle"
-        [(ngModel)]="memoirTitle"
       />
       <br />
       <!-- memoir author -->
@@ -90,7 +87,6 @@
         [id]="'memoir_author' + i"
         aria-describedby="basic-addon1"
         formControlName="memoirAuthor"
-        [(ngModel)]="memoirAuthor"
       />
       <br />
       <!-- memoir content -->
@@ -102,8 +98,6 @@
         placeholder="Add memoir here..."
         rows="5"
         formControlName="memoirContent"
-        [(ngModel)]="memoirContent"
-        (ngModelChange)="onContentChange($event)"
       ></textarea>
     </div>
 
